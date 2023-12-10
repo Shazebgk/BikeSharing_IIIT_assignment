@@ -1,0 +1,26 @@
+# Preprocessing steps
+
+import pandas as pd
+
+# Load your dataset (replace 'your_dataset.csv' with the actual dataset filename)
+df = pd.read_csv('/BikeAssignementData.csv')
+
+# Drop 'casual' columns and 'registered' (not features)
+df = df.drop(['casual', 'registered'], axis=1)
+
+# Map categorical values based on the data dictionary
+season_mapping = {1: 'Spring', 2: 'Summer', 3: 'Autumn', 4: 'Winter'}
+weathersit_mapping = {1: 'Clear', 2: 'Mist', 3: 'Light Rain', 4: 'Heavy Rain'}
+# Update the 'season' and 'weathersit' columns with categorical values
+df['season'] = df['season'].map(season_mapping)
+df['weathersit'] = df['weathersit'].map(weathersit_mapping)
+
+# Create dummy variables for categorical columns with more than 2 categories
+categorical_cols = ['season', 'weathersit']  # Add other categorical columns as needed
+for col in categorical_cols:
+    dummies = pd.get_dummies(df[col], prefix=col, drop_first=True)
+    df = pd.concat([df, dummies], axis=1)
+    df.drop(col, axis=1, inplace=True)
+
+# Display the modified DataFrame
+print(df.head())

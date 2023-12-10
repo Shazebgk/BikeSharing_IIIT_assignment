@@ -1,0 +1,17 @@
+# Scaling (Mandatory for linear models) Fit transform (Train data)
+
+
+# Assuming X_train contains your features
+# Drop non-numeric columns or columns with non-numeric data
+numeric_columns = ['season', 'yr', 'mnth', 'holiday', 'weekday', 'workingday', 'weathersit', 'temp', 'atemp', 'hum', 'windspeed', 'casual', 'registered']
+X_train_numeric = X_train[numeric_columns]
+
+# Initialize the StandardScaler
+scaler = StandardScaler()
+
+# Fit the scaler to the training data and transform it
+X_train_scaled = scaler.fit_transform(X_train_numeric)
+
+# Display the scaled features (X_train_scaled)
+print("Scaled features (X_train_scaled):")
+print(X_train_scaled)

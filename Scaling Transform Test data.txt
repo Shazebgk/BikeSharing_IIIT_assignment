@@ -1,0 +1,12 @@
+# Scaling Transform (Test data)
+
+# Assuming X_test contains your test features
+# Select the same numeric columns as used in training
+X_test_numeric = X_test[numeric_columns]
+
+# Transform the test data using the scaler fitted on the training data
+X_test_scaled = scaler.transform(X_test_numeric)
+
+# Display the scaled test features (X_test_scaled)
+print("Scaled test features (X_test_scaled):")
+print(X_test_scaled)

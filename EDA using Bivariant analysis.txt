@@ -1,0 +1,36 @@
+# EDA using Bivariant analysis
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load your dataset 
+df = pd.read_csv('/content/sample_data/BikeAssignment/BikeAssignementData.csv')
+
+# Scatter plots for numerical variables vs. target variable
+numerical_cols = ['temp', 'atemp', 'hum', 'windspeed']  # Adjust columns as needed
+target_variable = 'cnt'  # Replace with your target variable
+for col in numerical_cols:
+    plt.figure(figsize=(8, 5))
+    sns.scatterplot(data=df, x=col, y=target_variable)
+    plt.title(f'{col} vs {target_variable}')
+    plt.xlabel(col)
+    plt.ylabel(target_variable)
+    plt.show()
+
+# Correlation matrix for numerical variables
+corr_matrix = df.corr()
+plt.figure(figsize=(10, 8))
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Correlation Matrix')
+plt.show()
+
+# Boxplots for categorical variables vs. target variable
+categorical_cols = ['season', 'yr', 'mnth', 'holiday', 'weekday', 'workingday', 'weathersit']  # Add categorical columns
+for col in categorical_cols:
+    plt.figure(figsize=(8, 5))
+    sns.boxplot(data=df, x=col, y=target_variable)
+    plt.title(f'{col} vs {target_variable}')
+    plt.xlabel(col)
+    plt.ylabel(target_variable)
+    plt.show()

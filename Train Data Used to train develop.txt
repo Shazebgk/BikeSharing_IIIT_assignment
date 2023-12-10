@@ -1,0 +1,21 @@
+# Train Data: Used to train develop the model
+
+import pandas as pd
+
+# Load your dataset 
+file_path = '/content/sample_data/BikeAssignment/BikeAssignementData.csv'  
+
+# Read the dataset
+df = pd.read_csv(file_path)
+
+# Define features and target variable
+X = df.drop(['cnt'], axis=1)  # Features
+y = df['cnt']  # Target variable
+
+# Splitting the data into training and testing sets (80:20)
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Printing the shapes of the training and testing sets
+print("Training set shape - Features: ", X_train.shape, " Target: ", y_train.shape)
+print("Testing set shape - Features: ", X_test.shape, " Target: ", y_test.shape)

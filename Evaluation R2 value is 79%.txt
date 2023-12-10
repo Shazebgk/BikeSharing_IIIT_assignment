@@ -1,0 +1,34 @@
+Evaluation R2 value is 79%
+
+# Necessary imports
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
+# Load the dataset
+file_path = '/content/sample_data/BikeAssignment/BikeAssignementData.csv'
+data = pd.read_csv(file_path)
+
+# Scale the numeric features using StandardScaler
+scaler = StandardScaler()
+X_train_scaled = X_train[numeric_cols]
+X_test_scaled = X_test[numeric_cols]
+X_train_scaled = pd.DataFrame(scaler.fit_transform(X_train_scaled), columns=numeric_cols)
+X_test_scaled = pd.DataFrame(scaler.transform(X_test_scaled), columns=numeric_cols)
+
+# Concatenate scaled numeric columns with other columns
+X_train_final = pd.concat([X_train_scaled, X_train[other_cols], X_train[date_cols]], axis=1)
+X_test_final = pd.concat([X_test_scaled, X_test[other_cols], X_test[date_cols]], axis=1)
+
+# Train the Linear Regression model
+model = LinearRegression()
+model.fit(X_train_final, y_train)
+
+# Make predictions on the test set
+y_pred = model.predict(X_test_final)
+
+# Calculate R-squared score for test data
+r2_test = r2_score(y_test, y_pred)
+print("R-squared (R2) score for test data:", r2_test)
