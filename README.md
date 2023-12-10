@@ -1,2 +1,52 @@
 # BikeSharing_IIIT_assignment
 Only for IIIT assignment
+
+Approach Documentation for Linear Regression on Bike Sharing System
+
+Assignment Problem Statement
+
+A bike-sharing system provides bikes for shared use to individuals on a short-term basis. The Indian bike-sharing provider, Yuke, has faced revenue declines due to the ongoing pandemic. To regain momentum post-lockdown, Yuke aims to identify factors affecting bike demand in the Indian market. The objective is to build an interpretable linear regression model to predict bike demand based on various features.
+
+Approach Steps:
+
+1. Data Understanding and Loading
+Load 'day.csv' dataset.
+Refer to the data dictionary provided as a PDF for variable understanding.
+
+2. Preprocessing Steps
+Drop 'casual' and 'registered' columns (not features).
+Map categorical variables based on the data dictionary.
+Create dummy variables for categorical columns using pd.get_dummies() with drop_first=True.
+
+3. Exploratory Data Analysis (EDA)
+Perform univariate, bivariate, and multivariate analyses.
+Gain insights into relationships between variables and target.
+
+4. Train-Test Split
+Split data into training and testing sets using an 80:20 ratio.
+Train data: Used for model development.
+Test data: Used to evaluate the model's performance.
+
+5. Missing Value Imputation (skipped for this assignment)
+Check for missing values and perform imputation if necessary.
+
+6. Scaling
+Scale numerical features for better model performance.
+Fit-transform the training data and transform the test data.
+
+7. Feature Selection
+Use automated techniques like Recursive Feature Elimination (RFE).
+Employ manual methods (p-value and VIF) to select relevant features.
+Apply hybrid approaches combining automated and manual methods.
+Target reducing features from 30 to 15 or 10 based on significance (p-value =< 0.05) and VIF (=< 5).
+
+8. Model Building
+Employ linear regression algorithm for prediction.
+Develop an interpretable model describing the impact of features on bike demand.
+
+9. Evaluation
+Evaluate the model using the test data.
+Calculate metrics like R-squared (R2) and Adjusted R-squared (Adjusted R2).
+Aim for R2 scores of 80% to 85% for both training and testing sets.
+
+Approach aims to build an effective linear regression model that elucidates how various factors influence the demand for shared bikes in the Indian market. The model's interpretability will assist Yuke's management in making informed decisions to boost revenue.
